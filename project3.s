@@ -12,23 +12,3 @@
            syscall 
 
       SubC:
-	   addi $t4, $zero, $a0
-           addi $t7, $zero, 31
-           addi $s3, $zero, 31
-           add $s7, $zero, $zero
-           beqz $t4, IfZero
-           beq $t4, $t2, MultiplyNumber
-           addi $s7, $s7, 1
-      MultiplyBase:
-           mult $t7, $s3
-           mflo $t6
-           mfhi $t5
-           addu $t7, $t6, $t5
-           addi $s7, $s7, 1
-           bne $s7, $t4, MultiplyBase
-      MultiplyNumber:
-           mult $t7, $s6
-           mflo $t6
-           mfhi $t5
-           addu $t9, $t6, $t5
-           addi $t4, $t4, -1
