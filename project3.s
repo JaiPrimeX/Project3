@@ -4,4 +4,9 @@
       invalidWrong: .asciiz "NaN"
       output: .asciiz ""
 .text
-      main:  
+      main:
+           #Getting User's Input
+           li $v0, 8
+           la $a0, userInput
+           li $a1, 1001
+           syscall 
