@@ -19,3 +19,10 @@
            beqz $t4, IfZero
            beq $t4, $t2, MultiplyNumber
            addi $s7, $s7, 1
+      MultiplyBase:
+           mult $t7, $s3
+           mflo $t6
+           mfhi $t5
+           addu $t7, $t6, $t5
+           addi $s7, $s7, 1
+           bne $s7, $t4, MultiplyBase
