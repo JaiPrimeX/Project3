@@ -26,3 +26,9 @@
            addu $t7, $t6, $t5
            addi $s7, $s7, 1
            bne $s7, $t4, MultiplyBase
+      MultiplyNumber:
+           mult $t7, $s6
+           mflo $t6
+           mfhi $t5
+           addu $t9, $t6, $t5
+           addi $t4, $t4, -1
