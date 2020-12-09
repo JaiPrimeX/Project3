@@ -102,6 +102,45 @@
            beqz $s7, NaNHandler
            sub $s6, $s5, $t5
            bne $s6, $zero, ZeroAdder
+       continue:
+           addi $t3, $t3, 4
+           sw $t5, 0($t3)
+           add $sp, $t3, $zero
+           jal SubB 
+           lw $s7, -4($fp)
+           slti $s4, $s7, -1
+           addi $t2, $zero, 1 
+           beq $s4, $t2, NaNHandler
+           move $a0, $s7
+           li $v0, 1
+           syscall
+          # addi $t0, $t0, -4
+           #sw $s7, 0($t0)
+          # addi $fp, $fp, -4
+           #sw $s7, 0($s0)
+          # addi $s0, $s0, 4
+           addi $a2, $a2, 1
+           beq $a2, $a3, end
+           la $a0, commaaa
+           li $v0, 4
+           syscall
+           add $t5, $zero, $zero
+           j Begin
+        NaNHandler:
+           la $a0, invalidWrong
+           li $v0, 4
+           syscall
+           addi $a2, $a2, 1
+           beq $a2, $a3, end
+           j Begin
+        ZeroAdder:
+           addi $t3, $t3, 1
+           sb $zero, 0($t3)
+           addi $s6, $s6, -1
+           beqz $s6, continue
+           j ZeroAdder
+        end:
+           jr $t9
 
        SubC:
            addi $t2, $zero, 1 
