@@ -61,6 +61,18 @@
            jal SubA
            li $v0, 10
            syscall
+       
+         SubA:
+           lw $a3, 0($sp)
+           addi $sp, $sp, 4
+          # la $a0, output
+          # add $s0, $a0, $zero
+           add $a2, $zero, $zero
+           add $t9, $zero, $ra
+           add $t0, $sp, $zero  #stores previous sp
+           #add $t0, $fp, $zero  #stores previous fp 
+           #addi $t2, $zero, 44  #Comma value
+           add $t5, $zero, $zero, #counter of how many characters in each substring
 
        SubC:
            addi $t2, $zero, 1 
