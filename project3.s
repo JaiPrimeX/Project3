@@ -141,7 +141,44 @@
            j ZeroAdder
         end:
            jr $t9
-
+       SubB:
+           addi $t2, $zero, 1 
+           add $s3, $zero, $ra
+           add $t4, $zero, $zero
+           add $s1, $sp, $zero
+           lw $s0, 0($s1)
+           addi $s1, $s1, -8
+           add $s5, $zero, $zero
+           addi $a1, $s0, -1
+       loop:
+           lb $s2, 0($s1)
+           beqz $s2, skip2
+           jal SubC
+           slti $t8, $v0, -1
+           beq $t8, $t2, NaNexit
+       continue2:  
+           add $t4, $t4, $v0
+           addi $s1, $s1, 1
+           addi $s5, $s5, 1
+           addi $a1, $a1, -1
+           beq $s0, $s5, Exit2
+           j loop
+       Exit2:
+           move $a0, $t4
+           li $v0, 1
+           syscall
+           la $a0, newLine
+           li $v0, 4
+           syscall
+           sw $t4, -4($fp)
+           jr $s3
+       skip2:
+           addi $s1, $s1, 1
+           j loop
+           
+       NaNexit:
+           sw $v0, -4($fp)
+           jr $s3
        SubC:
            addi $t2, $zero, 1 
            add $v0, $zero, $zero
