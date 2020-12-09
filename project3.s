@@ -51,3 +51,19 @@
            beqz $a1, IfZero
            beq $a1, $t2, MultiplyNumber
            addi $s7, $s7, 1
+        MultiplyBase:
+           mult $t7, $t3
+           mflo $t6
+           mfhi $t5
+           addu $t7, $t6, $t5
+           addi $s7, $s7, 1
+           bne $s7, $a1, MultiplyBase
+       MultiplyNumber:
+           mult $t7, $s6
+           mflo $t6
+           mfhi $t5
+           addu $t1, $t6, $t5
+           j Return_here
+       IfZero:
+           addu $t1, $zero, $s6
+           j Return_here
