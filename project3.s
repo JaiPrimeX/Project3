@@ -2,7 +2,7 @@
       newLine:        .asciiz "\n"
       userInput:  .space  1001
       invalidWrong: .asciiz "NaN"
-      output: .asciiz ""
+      commaaa: .asciiz ","
 .text
        main:
            #Getting User's Input
@@ -10,6 +10,13 @@
            la $a0, userInput
            li $a1, 1001
            syscall 
+
+       #Return value counter, Incrementing number, Closing loop condition, Character counter
+           addi $s0, $zero, 1
+           add $t0, $zero, $zero
+           addi $s1, $zero, 1000
+           addi $t1, $zero, -1
+           addi $t2, $zero, 44 
 
        SubC:
            addi $t2, $zero, 1 
