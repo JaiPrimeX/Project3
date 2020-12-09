@@ -17,6 +17,21 @@
            addi $s1, $zero, 1000
            addi $t1, $zero, -1
            addi $t2, $zero, 44 
+       #Count each chracter and comma to get total of bits to save 
+       counter:
+           lb $s2, userInput($t0)
+           beqz $s2, Skip
+           beq $s2, $t2, CommaCount
+           addi $t1, $t1, 1
+           j Skip
+       CommaCount:
+           addi $s0, $s0, 1
+       Skip:
+           addi $t0, $t0, 1
+           bne $t0, $s1, counter
+           
+           # s0 has value of how many return values
+           # t1 has the amount of characters
 
        SubC:
            addi $t2, $zero, 1 
