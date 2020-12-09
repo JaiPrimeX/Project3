@@ -41,3 +41,13 @@
            beq $t1, $zero, WrongInput
            addi $s6, $s6, -87
            j BaseConverter
+       WrongInput:
+           addi $v0, $v0, -100    #-100 is flag for NaN Input
+           jr $ra
+       BaseConverter:
+           addi $t7, $zero, 31
+           addi $t3, $zero, 31
+           add $s7, $zero, $zero
+           beqz $a1, IfZero
+           beq $a1, $t2, MultiplyNumber
+           addi $s7, $s7, 1
