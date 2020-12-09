@@ -74,6 +74,17 @@
            #addi $t2, $zero, 44  #Comma value
            add $t5, $zero, $zero, #counter of how many characters in each substring
 
+           
+           #Reserve frame pointer
+           addi $sp, $sp, -4
+           sw $fp, 0($sp)
+           add $fp, $sp, $zero
+           
+           #Manipulate stack to fit characters and return values
+           addi $sp, $sp, -8000
+           #add $s2, $sp,$zero
+           addi $t3, $sp, 0
+
        SubC:
            addi $t2, $zero, 1 
            add $v0, $zero, $zero
