@@ -32,6 +32,19 @@
            
            # s0 has value of how many return values
            # t1 has the amount of characters
+        #Reserve frame pointer
+           addi $sp, $sp, -4
+           sw $fp, 0($sp)
+           add $fp, $sp, $zero
+           
+           #Manipulate stack to fit characters and return values
+           addi $s3, $zero, 4
+           mult $s0, $s3
+           mfhi $t9
+           mflo $t8
+           addu $t3, $t9, $t8
+           sub $sp, $sp, $t3
+           addi $sp, $sp, -1000
 
        SubC:
            addi $t2, $zero, 1 
