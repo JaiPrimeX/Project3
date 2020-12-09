@@ -27,3 +27,17 @@
            beq $t1, $t2, WrongInput
            addi $s6, $s6, -48
            j BaseConverter
+       UppercaseHandler:
+           slti $t1, $s6, 65
+           beq $t1, $t2, WrongInput
+           slti $t1, $s6, 86
+           beq $t1, $zero, LowercaseHandler
+           addi $s6, $s6, -55
+           j BaseConverter
+       LowercaseHandler:
+           slti $t1, $s6, 97
+           beq $t1, $t2, WrongInput
+           slti $t1, $s6, 118
+           beq $t1, $zero, WrongInput
+           addi $s6, $s6, -87
+           j BaseConverter
