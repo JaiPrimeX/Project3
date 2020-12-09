@@ -19,3 +19,11 @@
            slti $t1, $s6, 58
            beq $t1, $t2, Handlerof0to9
            j UppercaseHandler
+       Return_here: 
+           add $v0, $v0, $t1
+           jr $ra
+       Handlerof0to9:
+           slti $t1, $s6, 48
+           beq $t1, $t2, WrongInput
+           addi $s6, $s6, -48
+           j BaseConverter
