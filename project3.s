@@ -62,7 +62,7 @@
            li $v0, 10
            syscall
        
-         SubA:
+       SubA:
            lw $a3, 0($sp)
            addi $sp, $sp, 4
           # la $a0, output
@@ -84,6 +84,24 @@
            addi $sp, $sp, -8000
            #add $s2, $sp,$zero
            addi $t3, $sp, 0
+       Begin:
+           addi $t2, $zero, 44
+           lb $t6, 0($t0)
+           beq $t6, $t2, comma
+           beqz $t6, comma
+           sb $t6, 0($t3)
+           addi $t3, $t3,1
+           addi $t0, $t0, 1
+           addi $t5, $t5, 1
+           j Begin
+       comma:
+           beq $a2, $a3, end
+           addi $s5, $zero, 4
+           slti $s7, $t5, 5
+           beqz $t5, NaNHandler
+           beqz $s7, NaNHandler
+           sub $s6, $s5, $t5
+           bne $s6, $zero, ZeroAdder
 
        SubC:
            addi $t2, $zero, 1 
