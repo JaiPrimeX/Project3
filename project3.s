@@ -45,6 +45,22 @@
            addu $t3, $t9, $t8
            sub $sp, $sp, $t3
            addi $sp, $sp, -1000
+           
+           #Storing bits into previously destined spaces
+           add $s5, $sp, $zero #saving sp value before it gets manipulated
+           add $t0, $zero, $zero 
+       Storebits:
+           lb $s2, userInput($t0)
+           sb $s2, 0($sp)
+           addi $sp, $sp, 1
+           addi $t0, $t0, 1
+           bne $t0, $s1, Storebits
+           add $sp, $zero, $s5      #restoring sp to position needed before calling
+           addi $sp, $sp, -4
+           sw $s0, 0($sp) 
+           jal SubA
+           li $v0, 10
+           syscall
 
        SubC:
            addi $t2, $zero, 1 
